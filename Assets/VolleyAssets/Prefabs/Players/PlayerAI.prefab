@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -6536067262721876582, guid: 901a739ed265dff49acbca65e5f8bc48, type: 3}
       propertyPath: playerType
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -6536067262721876582, guid: 901a739ed265dff49acbca65e5f8bc48, type: 3}
       propertyPath: playerMeshRenderer
@@ -109,6 +109,7 @@ MonoBehaviour:
   strikeForce: 3
   playerGravity: -8
   playerSpawn: {x: 0, y: 0, z: 0}
+  textXaxysValue: 0
 --- !u!23 &6821306304717177287 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 3185402568112873631, guid: 901a739ed265dff49acbca65e5f8bc48, type: 3}

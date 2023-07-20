@@ -62,6 +62,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -6536067262721876582, guid: 901a739ed265dff49acbca65e5f8bc48, type: 3}
+      propertyPath: playerType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -6536067262721876582, guid: 901a739ed265dff49acbca65e5f8bc48, type: 3}
       propertyPath: playerMeshRenderer
       value: 
       objectReference: {fileID: 6384418725602203903}

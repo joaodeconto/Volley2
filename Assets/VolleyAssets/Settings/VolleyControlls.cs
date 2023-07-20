@@ -50,7 +50,7 @@ public partial class @VolleyControlls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""84c9957c-e521-477e-b039-a386e1349087"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Desktop"",
@@ -61,7 +61,7 @@ public partial class @VolleyControlls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""08927163-4b1c-4a03-9f59-050e41c54fe4"",
-                    ""path"": ""<XRController>{RightHand}/primaryButton"",
+                    ""path"": ""<XRController>{RightHand}/secondaryButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""OVR"",

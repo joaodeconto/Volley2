@@ -34,10 +34,20 @@ public class LobbyManager : MonoBehaviour, IGameState
         lobbyPanel.SetActive(true);
         switch (GameModeManager.Instance.CurrentGameMode)
         {
+            case GameModes.SingleOVR:
+                _gameMode = GameModes.SingleOVR;
+                SinglePlayerOptions();
+                lobbyStatusText.text = "Select AI Level";
+                break;
             case GameModes.SingleDesktop:
                 _gameMode = GameModes.SingleDesktop;
                 SinglePlayerOptions();
                 lobbyStatusText.text = "Select AI Level";
+                break;
+            case GameModes.MultiplayerOVR:
+                _gameMode = GameModes.MultiplayerOVR;
+                MultiPlayerOptions();
+                lobbyStatusText.text = "Starting Connection";
                 break;
             case GameModes.MultiPlayerDesktop:
                 _gameMode = GameModes.MultiPlayerDesktop;

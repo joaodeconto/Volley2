@@ -35,13 +35,14 @@ public class SpawnManager : MonoBehaviour
             PlayerStats player = networkObject.gameObject.GetComponent<PlayerStats>();
             player.PlayerTeam = (int)playerRef.PlayerId % 2;
             Debug.Log($"Initializing player {player.PlayerID}");
-            if (playerRef.PlayerId == runner.LocalPlayer.PlayerId)
-            {
-                player.transform.parent = OVRPlayer.transform;
-                player.transform.localPosition = Vector3.zero;
-            }
-        }
-        
+
+            if(GameModeManager.Instance.CurrentPlatformType == PlatformType.VR)
+                if (playerRef.PlayerId == runner.LocalPlayer.PlayerId)
+                {
+                    player.transform.parent = OVRPlayer.transform;
+                    player.transform.localPosition = Vector3.zero;
+                }
+        }        
     }
     public void SpawnLocalPlayer()
     {

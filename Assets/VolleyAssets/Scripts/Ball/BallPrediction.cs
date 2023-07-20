@@ -19,12 +19,12 @@ public class BallPrediction : MonoBehaviour
     {
         ballRigidbody = GetComponent<Rigidbody>();
         predictionObj = Instantiate(predictionObj);
-        if (GameModeManager.Instance.CurrentGameMode == GameModes.SingleDesktop
+/*        if (GameModeManager.Instance.CurrentGameMode == GameModes.SingleDesktop
             || GameModeManager.Instance.CurrentGameMode == GameModes.OnlyAi)
         {
             sendAiPrediction =true;            
         }
-    }
+*/  }
 
     private void OnDestroy()
     {
@@ -34,10 +34,7 @@ public class BallPrediction : MonoBehaviour
     private void Update()
     {
         PredictBallFall();
-        if(sendAiPrediction)
-        {
-            OnBallPredict?.Invoke(predictedPosition);
-        }
+        OnBallPredict?.Invoke(predictedPosition);
         if(ballRigidbody ==null)
             Destroy(this);
     }
