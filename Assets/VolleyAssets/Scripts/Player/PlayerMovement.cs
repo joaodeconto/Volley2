@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, ICharacterInput
 {
     [SerializeField] protected float speed = 5f; // Player movement speed
     [SerializeField] protected float jumpForce = 5f; // Jump force
@@ -9,12 +9,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float playerGravity = -8f; // Jump force
     [SerializeField] private Vector3 playerSpawn;
     [SerializeField] private int textXaxysValue;
+    [SerializeField] private float forcedYdown = -.1f;
 
     private PlayerStats playerStats;
     private PlayerInput playerInput;
     protected CharacterController controller;
     private Vector2 movementInput;
     private bool isJumping;
+    private bool isLanded;
+    private bool isStriking;
+    private bool isJumpRequested;
     private Vector3 moveDirection;
 
     protected Vector3 playerVelocity;
@@ -88,16 +92,28 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.started)
         {
+            isStriking = true;
             Debug.Log("Strike started");
         }
         else if (context.canceled)
         {
+            isStriking = false;
             Debug.Log("Strike canceled");
         }
     }
     public void Move(InputAction.CallbackContext context)
     {
-        MovementInput = context.ReadValue<Vector2>();
+        movementInput = context.ReadValue<Vector2>();
+
+        movementInput = new Vector2(
+                IsOutOfBoundsXMinus ? Mathf.Clamp(movementInput.x, 0f, 1f) : movementInput.x,
+                IsOutOfBoundsZMinus ? Mathf.Clamp(movementInput.y, 0f, 1f) : movementInput.y
+            );
+
+        movementInput = new Vector2(
+            IsOutOfBoundsXPlus ? Mathf.Clamp(movementInput.x, -1f, 0f) : movementInput.x,
+            IsOutOfBoundsZPlus ? Mathf.Clamp(movementInput.y, -1f, 0f) : movementInput.y
+        );
     }
 
     public void Jump(InputAction.CallbackContext context)
@@ -105,80 +121,47 @@ public class PlayerMovement : MonoBehaviour
         if (context.performed)
         {
             Debug.Log("Jump started");
-            isJumping = true;
+            isJumpRequested = true; // Set the jump request when the jump is performed
+            isLanded = false; // Reset isLanded when jump is requested
         }
         else if (context.canceled)
         {
             Debug.Log("Jump canceled");
-            isJumping = false;
+            // No need to set isJumping to false here
         }
     }
 
     private void MovePlayer()
     {
-        if (playerStats.playerType == PlayerStats.PlayerType.OVR)
+        moveDirection = new Vector3(MovementInput.x, forcedYdown, MovementInput.y);
+        moveDirection = transform.TransformDirection(moveDirection);
+
+        moveDirection *= speed;
+        if (!controller.isGrounded)
         {
-            OVRCameraRig ovrCameraRig = GetComponentInChildren<OVRCameraRig>();
-            Vector3 forwardDirection = new Vector3(1,0,0);
-
-            Vector3 rightDirection = new Vector3(0, 0, -1);
-
-            Vector3 moveDirection = forwardDirection * MovementInput.y + rightDirection * MovementInput.x;
-
-            moveDirection *= speed;
-
-            if (!controller.isGrounded)
-            {
-                playerVelocity.y += playerGravity * Time.deltaTime;
-            }
-            else
-            {
-                playerVelocity.y = 0f;
-            }
-
-            if (isJumping && controller.isGrounded)
-            {
-                playerVelocity.y += jumpForce;
-                isJumping = false;
-            }
-
-            controller.Move((moveDirection * Time.deltaTime) + (playerVelocity * Time.deltaTime));
+            playerVelocity.y += playerGravity * Time.deltaTime;
+            isLanded = false; // Character is not landed if not grounded
         }
         else
         {
-            // The movement for non-OVR players, similar to your original implementation
-            MovementInput = new Vector2(
-                IsOutOfBoundsXMinus ? Mathf.Clamp(movementInput.x, 0f, 1f) : movementInput.x,
-                IsOutOfBoundsZMinus ? Mathf.Clamp(movementInput.y, 0f, 1f) : movementInput.y
-            );
-
-            MovementInput = new Vector2(
-                IsOutOfBoundsXPlus ? Mathf.Clamp(movementInput.x, -1f, 0f) : movementInput.x,
-                IsOutOfBoundsZPlus ? Mathf.Clamp(movementInput.y, -1f, 0f) : movementInput.y
-            );
-
-            moveDirection = new Vector3(MovementInput.x, 0f, MovementInput.y);
-            moveDirection = transform.TransformDirection(moveDirection);
-
-            moveDirection *= speed;
-
-            if (!controller.isGrounded)
+            playerVelocity.y = 0f;
+            if (!isLanded)
             {
-                playerVelocity.y += playerGravity * Time.deltaTime;
+                if (isJumpRequested) // Check if a jump request was made
+                {
+                    playerVelocity.y += jumpForce;
+                    isJumpRequested = false; // Reset the jump request
+                    isJumping = true; // Set isJumping to true when the character jumps
+                }
+                else
+                {
+                    isJumping = false; // Set isJumping to false only when the character lands
+                    isLanded = true; // Set isLanded to true when the character lands
+                }
             }
-            else
-            {
-                playerVelocity.y = 0f;
-            }
-
-            if (isJumping && controller.isGrounded)
-            {
-                playerVelocity.y += jumpForce;
-                isJumping = false;
-            }
-
-            controller.Move((moveDirection * Time.deltaTime) + (playerVelocity * Time.deltaTime));
         }
+
+        controller.Move((moveDirection * Time.deltaTime) + (playerVelocity * Time.deltaTime));
     }
 
 
@@ -205,5 +188,20 @@ public class PlayerMovement : MonoBehaviour
         }
 
         return isOutOfBounds;
+    }
+
+    public Vector2 GetMoveInput()
+    {
+        return MovementInput;
+    }
+
+    public bool GetJumpInput()
+    {
+        return isJumping;
+    }
+
+    public float GetStrikeInput()
+    {
+        return isStriking ? 1f : 0f;
     }
 }
