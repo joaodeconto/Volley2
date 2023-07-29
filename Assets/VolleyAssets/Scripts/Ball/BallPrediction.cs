@@ -4,7 +4,7 @@ using UnityEngine.Events;
 public class BallPrediction : MonoBehaviour
 {
     [SerializeField] private GameObject predictionObj;
-    [SerializeField] private float markerYPosition = 0f;
+    [SerializeField] private float markerYPosition = 0.1f;
     [SerializeField] private float scaleModifier = 0f;
 
     public static UnityAction<Vector3> OnBallPredict;
@@ -19,16 +19,23 @@ public class BallPrediction : MonoBehaviour
     {
         ballRigidbody = GetComponent<Rigidbody>();
         predictionObj = Instantiate(predictionObj);
-/*        if (GameModeManager.Instance.CurrentGameMode == GameModes.SingleDesktop
-            || GameModeManager.Instance.CurrentGameMode == GameModes.OnlyAi)
-        {
-            sendAiPrediction =true;            
-        }
-*/  }
+        GameManager.OnStateEnter += ActivatePredictionVisual;
+        GameManager.OnStateExit += DeactivatePredictionVisual;
+    }
 
     private void OnDestroy()
     {
         Destroy(predictionObj);
+    }
+
+    void ActivatePredictionVisual()
+    {
+        predictionObj.SetActive(true);
+    }
+
+    void DeactivatePredictionVisual()
+    {
+        predictionObj.SetActive(false);
     }
 
     private void Update()
@@ -47,7 +54,7 @@ public class BallPrediction : MonoBehaviour
         timeToGround = CalculateTimeToReachGround();
         if (timeToGround < 0f)
         {
-            predictionObj.SetActive(false);
+            //DeactivatePredictionVisual();
             return;
         }
 
@@ -64,7 +71,7 @@ public class BallPrediction : MonoBehaviour
         predictionObj.transform.localScale = new Vector3(markerScale * scaleModifier, markerYPosition, markerScale* scaleModifier);
 
         // Set the prediction marker position
-        predictionObj.SetActive(true);
+        //ActivatePredictionVisual();
         predictionObj.transform.position = predictedPosition;
     }
 

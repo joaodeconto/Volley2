@@ -4,7 +4,9 @@ public class PlayerStats : MonoBehaviour
 {
     public int PlayerID;
     [SerializeField] private int playerTeam = 0; // 0 = blue, 1 = red
+    [SerializeField] private Vector3 playerSpawn;
     [SerializeField] private MeshRenderer playerMeshRenderer;
+    [SerializeField] private GameObject visualObject;
     public int PlayerTeam { get { return playerTeam; } set { playerTeam = value; } }
     public PlayerType playerType;
     public enum PlayerType
@@ -22,12 +24,14 @@ public class PlayerStats : MonoBehaviour
             gameObject.tag = "TeamA";
             playerMeshRenderer.material.color = Color.blue;
             transform.position = new Vector3(-5f, 0f, 0f);
+            visualObject.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
         }
         else
         {
             gameObject.tag = "TeamB";
             playerMeshRenderer.material.color = Color.red;
             transform.position = new Vector3(5f, 0f, 0f);
+            visualObject.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
         }
     }
 }

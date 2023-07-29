@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class GameOver : MonoBehaviour, IGameState, IScore
@@ -9,6 +10,10 @@ public class GameOver : MonoBehaviour, IGameState, IScore
     [SerializeField] private Button quitMacth;
     [SerializeField] private GameObject endGamePanel;
 
+
+    public static UnityAction OnStateEnter;
+    public static UnityAction OnStateUpdate;
+    public static UnityAction OnStateExit;
     public void AddPoint(int team)
     {
     }
@@ -33,10 +38,12 @@ public class GameOver : MonoBehaviour, IGameState, IScore
         endGamePanel.SetActive(true);
         restartMacth.onClick.AddListener(() => GameStateManager.Instance.ChangeState(GameStates.GAMEPLAY));
         quitMacth.onClick.AddListener(() => GameStateManager.Instance.ChangeState(GameStates.MAINMENU));
+        OnStateEnter?.Invoke();
     }
     public void ExitState()
     {
         endGamePanel.SetActive(false);
+        OnStateExit?.Invoke();
     }
 
     public void UpdateState()

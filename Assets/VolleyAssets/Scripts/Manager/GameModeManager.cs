@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.XR;
 
 public class GameModeManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class GameModeManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        SetPlatformType(GetPlatformType());
     }
     public void SetPlatformType(PlatformType platformType)
     {
@@ -21,5 +23,21 @@ public class GameModeManager : MonoBehaviour
     public void SetGameDifficulty(GameDifficulty gameDifficulty)
     {
         CurrentGameDifficulty = gameDifficulty;
+    }
+
+    private PlatformType GetPlatformType()
+    {
+        if (Application.isMobilePlatform)
+        {
+            return PlatformType.Mobile;
+        }
+        else if (XRSettings.enabled)
+        {
+            return PlatformType.VR;
+        }
+        else
+        {
+            return PlatformType.Desktop;
+        }
     }
 }

@@ -1,25 +1,26 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.UI;
 
 public class PlayerMovement : MonoBehaviour, ICharacterInput
 {
-    [SerializeField] protected float speed = 5f; // Player movement speed
-    [SerializeField] protected float jumpForce = 5f; // Jump force
-    [SerializeField] private float strikeForce = 3f; // Jump force
-    [SerializeField] private float playerGravity = -8f; // Jump force
+    [SerializeField] protected float speed = 5f; 
+    [SerializeField] protected float jumpForce = 5f;
+    [SerializeField] private float playerGravity = -8f;
     [SerializeField] private Vector3 playerSpawn;
-    [SerializeField] private int textXaxysValue;
     [SerializeField] private float forcedYdown = -.1f;
+
+    public bool IsJumping => isJumping;
 
     private PlayerStats playerStats;
     private PlayerInput playerInput;
     protected CharacterController controller;
-    private Vector2 movementInput;
-    private bool isJumping;
-    private bool isLanded;
-    private bool isStriking;
-    private bool isJumpRequested;
-    private Vector3 moveDirection;
+    protected Vector2 movementInput;
+    protected bool isJumping;
+    protected bool isLanded;
+    protected bool isStriking;
+    protected bool isJumpRequested;
+    protected Vector3 moveDirection;
 
     protected Vector3 playerVelocity;
 
@@ -33,10 +34,10 @@ public class PlayerMovement : MonoBehaviour, ICharacterInput
         set => movementInput = value;
     }
 
-    private bool IsOutOfBoundsXPlus => transform.position.x > CourtBounds.x + TeamPosition - (transform.localScale.x / 2);
-    private bool IsOutOfBoundsXMinus => transform.position.x < -CourtBounds.x + TeamPosition + (transform.localScale.x / 2);
-    private bool IsOutOfBoundsZPlus => transform.position.z > CourtBounds.z - (transform.localScale.z / 2);
-    private bool IsOutOfBoundsZMinus => transform.position.z < -CourtBounds.z + (transform.localScale.z / 2);
+    private bool IsOutOfBoundsXPlus => transform.position.x > CourtBounds.x + TeamPosition; // - (transform.localScale.x / 2);
+    private bool IsOutOfBoundsXMinus => transform.position.x < -CourtBounds.x + TeamPosition; // + (transform.localScale.x / 2);
+    private bool IsOutOfBoundsZPlus => transform.position.z > CourtBounds.z + (transform.localScale.z);
+    private bool IsOutOfBoundsZMinus => transform.position.z < -CourtBounds.z - (transform.localScale.z);
 
 
     private void Awake()
@@ -44,43 +45,42 @@ public class PlayerMovement : MonoBehaviour, ICharacterInput
         playerStats = GetComponent<PlayerStats>();
         controller = GetComponent<CharacterController>();
         playerInput = GetComponent<PlayerInput>();
-        GameManager.OnStateEnter += OnEnterGameplay;
-        GameManager.OnStateExit += OnExitGameplay;
+    }
+
+    private void Start()
+    {
+        if (playerStats.playerType == PlayerStats.PlayerType.AI)
+            return;
+        else
+        {
+            playerInput.uiInputModule = FindObjectOfType<InputSystemUIInputModule>();            
+        }
+    }
+    private void OnEnable()
+    {
+        GameOver.OnStateEnter += DeactivateInput;
+        GameManager.OnStateEnter += ActivateInput;
     }
 
     private void OnDestroy()
     {
-        GameManager.OnStateEnter -= OnEnterGameplay;
-        GameManager.OnStateExit -= OnExitGameplay;
+        GameOver.OnStateEnter -= DeactivateInput;
+        GameManager.OnStateEnter -= ActivateInput;
     }
 
-    private void OnEnterGameplay()
+    private void ActivateInput()
     {
-
-        if (playerStats.playerType == PlayerStats.PlayerType.AI)
-            return;
-        else
-        {
-            playerInput.enabled = true;
-            playerInput.actions.FindActionMap("Player1").Enable();
-            playerInput.actions["Move"].performed += Move;
-            playerInput.actions["Jump"].performed += Jump;
-        }
+        Debug.Log("ActivateInput");
+        playerInput.actions["Move"].performed += Move;
+        playerInput.actions["Jump"].performed += Jump;
     }
-
-    private void OnExitGameplay()
+    private void DeactivateInput()
     {
-        if (playerStats.playerType == PlayerStats.PlayerType.AI)
-            return;
-        else
-        {
-            playerInput.enabled = false;
-            playerInput.actions.FindActionMap("Player1").Disable();
-            playerInput.actions["Move"].performed -= Move;
-            playerInput.actions["Jump"].performed -= Jump;
-        }
-
+        Debug.Log("DeactivateInput");
+        playerInput.actions["Move"].performed -= Move;
+        playerInput.actions["Jump"].performed -= Jump;
     }
+
     private void Update()
     {
         if (playerStats.playerType == PlayerStats.PlayerType.AI)
@@ -104,35 +104,36 @@ public class PlayerMovement : MonoBehaviour, ICharacterInput
     public void Move(InputAction.CallbackContext context)
     {
         movementInput = context.ReadValue<Vector2>();
-
-        movementInput = new Vector2(
-                IsOutOfBoundsXMinus ? Mathf.Clamp(movementInput.x, 0f, 1f) : movementInput.x,
-                IsOutOfBoundsZMinus ? Mathf.Clamp(movementInput.y, 0f, 1f) : movementInput.y
-            );
-
-        movementInput = new Vector2(
-            IsOutOfBoundsXPlus ? Mathf.Clamp(movementInput.x, -1f, 0f) : movementInput.x,
-            IsOutOfBoundsZPlus ? Mathf.Clamp(movementInput.y, -1f, 0f) : movementInput.y
-        );
     }
 
     public void Jump(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            Debug.Log("Jump started");
-            isJumpRequested = true; // Set the jump request when the jump is performed
-            isLanded = false; // Reset isLanded when jump is requested
+            if (isJumping) return; 
+            isJumpRequested = true;
+            isLanded = false;
         }
         else if (context.canceled)
         {
-            Debug.Log("Jump canceled");
+            //Debug.Log("Jump canceled");
             // No need to set isJumping to false here
         }
     }
+    //Mobile AI
 
-    private void MovePlayer()
+    protected void MovePlayer()
     {
+        movementInput = new Vector2(
+               IsOutOfBoundsXMinus ? Mathf.Clamp(movementInput.x, 0f, 1f) : movementInput.x,
+               IsOutOfBoundsZMinus ? Mathf.Clamp(movementInput.y, 0f, 1f) : movementInput.y
+           );
+
+        movementInput = new Vector2(
+            IsOutOfBoundsXPlus ? Mathf.Clamp(movementInput.x, -1f, 0f) : movementInput.x,
+            IsOutOfBoundsZPlus ? Mathf.Clamp(movementInput.y, -1f, 0f) : movementInput.y
+        );
+
         moveDirection = new Vector3(MovementInput.x, forcedYdown, MovementInput.y);
         moveDirection = transform.TransformDirection(moveDirection);
 
@@ -169,20 +170,20 @@ public class PlayerMovement : MonoBehaviour, ICharacterInput
     {
         bool isOutOfBounds = false;
 
-        if (nextPos.x > CourtBounds.x + TeamPosition - (transform.localScale.x / 2))
+        if (nextPos.x > CourtBounds.x + TeamPosition + (transform.localScale.x / 2))
         {
             isOutOfBounds = true;
         }
-        else if (nextPos.x < -CourtBounds.x + TeamPosition + (transform.localScale.x / 2))
+        else if (nextPos.x < -CourtBounds.x + TeamPosition - (transform.localScale.x / 2))
         {
             isOutOfBounds = true;
         }
 
-        if (nextPos.z > CourtBounds.z - (transform.localScale.z / 2))
+        if (nextPos.z > CourtBounds.z + (transform.localScale.z / 2))
         {
             isOutOfBounds = true;
         }
-        else if (nextPos.z < -CourtBounds.z + (transform.localScale.z / 2))
+        else if (nextPos.z < -CourtBounds.z - (transform.localScale.z / 2))
         {
             isOutOfBounds = true;
         }
@@ -190,17 +191,21 @@ public class PlayerMovement : MonoBehaviour, ICharacterInput
         return isOutOfBounds;
     }
 
-    public Vector2 GetMoveInput()
+    public virtual Vector2 GetMoveInput()
     {
+        //invert animation if player is on the right side
+        if (TeamPosition == 1)
+            movementInput.x *= -1;
+
         return MovementInput;
     }
 
-    public bool GetJumpInput()
+    public virtual bool GetJumpInput()
     {
         return isJumping;
     }
 
-    public float GetStrikeInput()
+    public virtual float GetStrikeInput()
     {
         return isStriking ? 1f : 0f;
     }

@@ -8,6 +8,10 @@ public class PlayerAnimation : MonoBehaviour
     [SerializeField] private float speedMultiplier = 1f;
 
     private ICharacterInput characterInput;
+    private Vector2 moveInput;
+    private bool jumpingInput;
+    private float strikingInput;
+    private float speed;
 
     private void Awake()
     {
@@ -19,12 +23,12 @@ public class PlayerAnimation : MonoBehaviour
     {
         if (animator != null)
         {
-
+            
             // Get movement input from character input
-            Vector2 moveInput = characterInput.GetMoveInput();
-            bool jumpingInput = characterInput.GetJumpInput();
-            float strikingInput = characterInput.GetStrikeInput();
-            float speed = moveInput.magnitude;
+            moveInput = characterInput.GetMoveInput();
+            jumpingInput = characterInput.GetJumpInput();
+            strikingInput = characterInput.GetStrikeInput();
+            speed = moveInput.magnitude;
 
             // Set animator parameters based on input values
             animator.SetBool("Jump", jumpingInput);

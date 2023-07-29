@@ -1,6 +1,8 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.UI;
+using UnityEngine.UI;
 using UnityEngine.XR;
 
 public class UIManager : MonoBehaviour
@@ -9,43 +11,32 @@ public class UIManager : MonoBehaviour
     [SerializeField] private PlatformType platformType;
     [SerializeField] private Canvas canvas;
     [SerializeField] private GameObject OVRObj;
-    [SerializeField] private GameObject CameraObj;
+    [SerializeField] private GameObject cameraObj;
+    [SerializeField] private GameObject mobileJoystick;
+    [SerializeField] private Button jumpButtonMobile;
     [SerializeField] private EventSystem eventSystem;
+
+    public static UnityAction OnJumpPressed;
 
     private void Start()
     {
+        platformType = GameModeManager.Instance.CurrentPlatformType;
         ConfigureCanvasForPlatform(platformType);
-        GameModeManager.Instance.SetPlatformType(platformType);
+        DeactivateJoystick();
     }
-    //TODO implement this
-    private PlatformType GetPlatformType()
-    {
-        if (Application.isMobilePlatform)
-        {
-            return PlatformType.Mobile;
-        }
-        else if (XRSettings.enabled)
-        {
-            return PlatformType.VR;
-        }
-        else
-        {
-            return PlatformType.Desktop;
-        }
-    }
-    // Input system conflicts with OVR input system
-    // TODO - Fix this set all to input system
     private void ConfigureCanvasForPlatform(PlatformType platformType)
     {
         switch (platformType)
         {
             case PlatformType.Desktop:
-            case PlatformType.Mobile:
-                // Set Canvas render mode to Screen Space - Overlay or Screen Space - Camera
-
-                //eventSystem.GetComponent<OVRInputModule>().enabled = false;
-                CameraObj.SetActive(true);
+                cameraObj.SetActive(true);
                 canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+                break;
+            case PlatformType.Mobile:
+                cameraObj.SetActive(true);
+                canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+                GameManager.OnStateEnter += ActivateJoystick;
+                GameOver.OnStateEnter += DeactivateJoystick;
                 break;
             case PlatformType.VR:
                 // Set Canvas render mode to World Space
@@ -62,6 +53,26 @@ public class UIManager : MonoBehaviour
                     canvas.gameObject.AddComponent<OVRRaycaster>();
                 }
                 break;
+        }
+    }
+
+    private void ActivateJoystick()
+    {
+        if(mobileJoystick.activeSelf == true) 
+            return;
+        mobileJoystick.SetActive(true);
+    }
+    private void DeactivateJoystick()
+    {
+        mobileJoystick.SetActive(false);
+        jumpButtonMobile.onClick.RemoveAllListeners();
+    }
+    private void OnDestroy()
+    {
+        if(platformType == PlatformType.Mobile)
+        {
+            GameManager.OnStateEnter -= ActivateJoystick;
+            GameManager.OnStateExit -= DeactivateJoystick;
         }
     }
 }

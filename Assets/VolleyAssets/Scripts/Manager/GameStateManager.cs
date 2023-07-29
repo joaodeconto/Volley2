@@ -46,6 +46,7 @@ public class GameStateManager : MonoBehaviour
                 break;
             case GameStates.BREAK:
                 Debug.Log("Entered Break State");
+                _currentState = FindObjectOfType<BreakManager>();
                 break;
             case GameStates.GAMEPLAY:
                 _currentState = FindObjectOfType<GameManager>();

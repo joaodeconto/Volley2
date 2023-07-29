@@ -48,6 +48,17 @@
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "",
+                    "id": "edf299d2-3664-4e3d-a5ba-cd2da6b86836",
+                    "path": "<AndroidGamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mobile",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
                     "name": "2D Vector",
                     "id": "ac6a0333-b248-4f1b-ab11-55fe33fadef7",
                     "path": "2DVector",
@@ -109,6 +120,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "OVR",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f2a7cc4a-e01f-4cc8-a370-1a7964ed9a42",
+                    "path": "<AndroidGamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mobile",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -338,7 +360,7 @@
                     "path": "<Joystick>/stick/up",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Joystick",
+                    "groups": "Joystick;Mobile",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -349,7 +371,7 @@
                     "path": "<Joystick>/stick/down",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Joystick",
+                    "groups": "Joystick;Mobile",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -360,7 +382,7 @@
                     "path": "<Joystick>/stick/left",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Joystick",
+                    "groups": "Joystick;Mobile",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -371,7 +393,7 @@
                     "path": "<Joystick>/stick/right",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Joystick",
+                    "groups": "Joystick;Mobile",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -393,7 +415,7 @@
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse",
+                    "groups": "Keyboard&Mouse;Desktop",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -404,7 +426,7 @@
                     "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse",
+                    "groups": "Keyboard&Mouse;Desktop",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -415,7 +437,7 @@
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse",
+                    "groups": "Keyboard&Mouse;Desktop",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -426,7 +448,7 @@
                     "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse",
+                    "groups": "Keyboard&Mouse;Desktop",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -437,7 +459,7 @@
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse",
+                    "groups": "Keyboard&Mouse;Desktop",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -448,7 +470,7 @@
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse",
+                    "groups": "Keyboard&Mouse;Desktop",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -459,7 +481,7 @@
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse",
+                    "groups": "Keyboard&Mouse;Desktop",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -470,7 +492,7 @@
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse",
+                    "groups": "Keyboard&Mouse;Desktop",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -481,7 +503,7 @@
                     "path": "*/{Submit}",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse;Gamepad;Touch;Joystick;XR",
+                    "groups": "Keyboard&Mouse;Gamepad;Touch;Joystick;XR;Desktop;OVR;Mobile",
                     "action": "Submit",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -492,7 +514,7 @@
                     "path": "*/{Cancel}",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse;Gamepad;Touch;Joystick;XR",
+                    "groups": "Keyboard&Mouse;Gamepad;Touch;Joystick;XR;Desktop;OVR;Mobile",
                     "action": "Cancel",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -503,7 +525,7 @@
                     "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse",
+                    "groups": "Keyboard&Mouse;Desktop;OVR",
                     "action": "Point",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -525,7 +547,7 @@
                     "path": "<Touchscreen>/touch*/position",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Touch",
+                    "groups": "Touch;Mobile",
                     "action": "Point",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -536,7 +558,7 @@
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse",
+                    "groups": "Keyboard&Mouse;Desktop",
                     "action": "Click",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -558,7 +580,7 @@
                     "path": "<Touchscreen>/touch*/press",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Touch",
+                    "groups": "Touch;Mobile",
                     "action": "Click",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -569,7 +591,7 @@
                     "path": "<XRController>/trigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": "XR",
+                    "groups": "XR;OVR",
                     "action": "Click",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -613,7 +635,7 @@
                     "path": "<XRController>/devicePosition",
                     "interactions": "",
                     "processors": "",
-                    "groups": "XR",
+                    "groups": "XR;OVR",
                     "action": "TrackedDevicePosition",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -624,7 +646,7 @@
                     "path": "<XRController>/deviceRotation",
                     "interactions": "",
                     "processors": "",
-                    "groups": "XR",
+                    "groups": "XR;OVR",
                     "action": "TrackedDeviceOrientation",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -660,6 +682,22 @@
                 },
                 {
                     "devicePath": "<OculusTouchController>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Mobile",
+            "bindingGroup": "Mobile",
+            "devices": [
+                {
+                    "devicePath": "<Touchscreen>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<AndroidJoystick>",
                     "isOptional": false,
                     "isOR": false
                 }

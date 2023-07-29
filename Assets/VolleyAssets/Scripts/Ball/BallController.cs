@@ -3,66 +3,72 @@ using UnityEngine.Events;
 
 public class BallController : MonoBehaviour
 {
-    [SerializeField] private float gravityModifier = .5f; // Gravity modifier
-    [SerializeField] private float hitForce = 10f; // Force applied to the ball when hit by a player
-    public int lastToTouch = 0; // ID of the last player to touch the ball
-    private Rigidbody ballRigidbody;
-    private Rigidbody playerRigidbody;
-    private bool isNetworked;
+    [SerializeField] private float gravityModifier = 0.5f; // Gravity modifier
+    
+    private AudioSource audioSource;
+    public int LastToTouch { get; private set; } // ID of the last player to touch the ball
 
-    // unity action to send message to gamemanager
+    // Unity event to send message to GameManager
     public static UnityAction<int> OnBallHitCourt;
+
+    private Rigidbody ballRigidbody;
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+        PlayerInteraction.OnBallStrike += HitBall;
+    }
+
+    private void OnDestroy()
+    {
+        PlayerInteraction.OnBallStrike -= HitBall;
+    }
 
     private void Start()
     {
         ballRigidbody = GetComponent<Rigidbody>();
-        if(TryGetComponent(out BallNetwork networkedBall))
+        if (TryGetComponent(out BallNetwork networkedBall))
         {
-            isNetworked = true;
+            // If you have a BallNetwork component for networking, set isNetworked to true
         }
     }
+
     private void FixedUpdate()
     {
-        ballRigidbody.AddForce(Physics.gravity * gravityModifier, ForceMode.Acceleration);        
+        ballRigidbody.AddForce(Physics.gravity * gravityModifier, ForceMode.Acceleration);
     }
+
     private void OnCollisionEnter(Collision collision)
     {
+
+        if (!collision.gameObject.CompareTag("Player"))
+        {
+            AudioManager.Instance.PlaySound(AudioManager.AudioType.SoundEffect, 0, audioSource);
+        }
+
         if (GameStateManager.Instance.CurrentState != GameStates.GAMEPLAY)
             return;
 
         if (collision.gameObject.CompareTag("Court"))
         {
-            OnBallHitCourt(collision.GetContact(0).point.x < 0 ? 1:0);
+            int side = collision.GetContact(0).point.x < 0 ? 1 : 0;
+            OnBallHitCourt?.Invoke(side);
         }
 
         else if (collision.gameObject.CompareTag("OutBounds"))
         {
-            OnBallHitCourt(lastToTouch);
+            
+            OnBallHitCourt?.Invoke(LastToTouch == 0 ? 1:0);
         }
 
-        if (collision.gameObject.CompareTag("TeamA") || collision.gameObject.CompareTag("TeamB"))
-        {
-            playerRigidbody = collision.gameObject.GetComponent<Rigidbody>();
-            Vector3 direction;
-            if (transform.position.x < 0)
-            {
-                // Direction of the ball is the TEAM forward vector + a bit of upward force
-                direction = Vector3.right + Vector3.up;
-                //direction += playerRigidbody.velocity;
+    }
 
-                lastToTouch = 1;
-            }
-            else
-            {
-                // Direction of the ball is the TEAM forward vector + a bit of upward force
-                direction = Vector3.right * -1 + Vector3.up;
-                //direction += playerRigidbody.velocity;
+    public void HitBall(BallStrike strikeData)
+    {
+        // Apply the hit force to the ball in the provided direction
+        ballRigidbody.AddForce(strikeData.direction * strikeData.hitForce, ForceMode.Impulse);
 
-                lastToTouch = 0;
-            }
-
-            // Apply the hit force to the ball in the calculated direction
-            ballRigidbody.AddForce(direction * hitForce, ForceMode.Impulse);
-        }
+        // Set the last player to touch the ball
+        LastToTouch = strikeData.teamId;
+        AudioManager.Instance.PlaySound(AudioManager.AudioType.SoundEffect, Random.Range(1,3), audioSource);
     }
 }
