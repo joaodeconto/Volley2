@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -22,6 +23,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private PlayerStats playerStats;
     private PlayerMovement playerMovement;
+    private bool recentTouch = false;
 
     private Vector3 SideDirection
     {
@@ -43,11 +45,23 @@ public class PlayerInteraction : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if(recentTouch)
+        {
+            return;
+        }
         if (collision.gameObject.CompareTag("Ball"))
         {
             Vector3 ballDirection = CalculateBallDirection();
             StrikeBall(ballDirection);
+            StartCoroutine(RecentTouched());
         }
+    }
+
+    private IEnumerator RecentTouched()
+    {
+        recentTouch = true;
+        yield return new WaitForSeconds(0.5f);
+        recentTouch = false;
     }
 
     private Vector3 CalculateBallDirection()

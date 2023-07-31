@@ -33,9 +33,10 @@ public class PlayerMovement : MonoBehaviour, ICharacterInput
         get => movementInput;
         set => movementInput = value;
     }
+    private float NetPosition => playerStats.PlayerTeam == 0 ? -1 : 1;
 
-    private bool IsOutOfBoundsXPlus => transform.position.x > CourtBounds.x + TeamPosition; // - (transform.localScale.x / 2);
-    private bool IsOutOfBoundsXMinus => transform.position.x < -CourtBounds.x + TeamPosition; // + (transform.localScale.x / 2);
+    private bool IsOutOfBoundsXPlus => transform.position.x > CourtBounds.x + TeamPosition + NetPosition; // - (transform.localScale.x / 2);
+    private bool IsOutOfBoundsXMinus => transform.position.x < -CourtBounds.x + TeamPosition + NetPosition; // + (transform.localScale.x / 2);
     private bool IsOutOfBoundsZPlus => transform.position.z > CourtBounds.z + (transform.localScale.z);
     private bool IsOutOfBoundsZMinus => transform.position.z < -CourtBounds.z - (transform.localScale.z);
 
@@ -170,11 +171,11 @@ public class PlayerMovement : MonoBehaviour, ICharacterInput
     {
         bool isOutOfBounds = false;
 
-        if (nextPos.x > CourtBounds.x + TeamPosition + (transform.localScale.x / 2))
+        if (nextPos.x > CourtBounds.x + TeamPosition + NetPosition)
         {
             isOutOfBounds = true;
         }
-        else if (nextPos.x < -CourtBounds.x + TeamPosition - (transform.localScale.x / 2))
+        else if (nextPos.x < -CourtBounds.x + TeamPosition + NetPosition)
         {
             isOutOfBounds = true;
         }

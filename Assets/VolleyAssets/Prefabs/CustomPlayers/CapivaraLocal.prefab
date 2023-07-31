@@ -119,6 +119,14 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1347512170163192992, guid: 901a739ed265dff49acbca65e5f8bc48, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 1347512170163192992, guid: 901a739ed265dff49acbca65e5f8bc48, type: 3}
+      propertyPath: m_LayerOverridePriority
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2810404665707363651, guid: 901a739ed265dff49acbca65e5f8bc48, type: 3}
       propertyPath: speed
       value: 6
@@ -187,13 +195,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5202645751392760162, guid: 901a739ed265dff49acbca65e5f8bc48, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 5943985099017850198, guid: 901a739ed265dff49acbca65e5f8bc48, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5943985099017850198, guid: 901a739ed265dff49acbca65e5f8bc48, type: 3}
       propertyPath: m_DefaultControlScheme
-      value: Mobile
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5943985099017850198, guid: 901a739ed265dff49acbca65e5f8bc48, type: 3}
       propertyPath: m_NeverAutoSwitchControlSchemes

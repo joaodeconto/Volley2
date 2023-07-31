@@ -10,7 +10,7 @@ public class GameModeManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        SetPlatformType(PlatformType.Mobile);
+        SetPlatformType(GetPlatformType());
     }
     public void SetPlatformType(PlatformType platformType)
     {
@@ -31,7 +31,10 @@ public class GameModeManager : MonoBehaviour
         {
             return PlatformType.Mobile;
         }
-      
+        else if (XRSettings.enabled)
+        {
+            return PlatformType.VR;
+        }
         else
         {
             return PlatformType.Desktop;
