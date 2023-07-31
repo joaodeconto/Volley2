@@ -233,10 +233,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 870380683}
+  - component: {fileID: 870380687}
   - component: {fileID: 870380686}
   - component: {fileID: 870380685}
   - component: {fileID: 870380684}
-  - component: {fileID: 870380687}
   m_Layer: 5
   m_Name: JumpButton
   m_TagString: Untagged
@@ -262,7 +262,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -150, y: 150}
+  m_AnchoredPosition: {x: -150, y: 0}
   m_SizeDelta: {x: 256, y: 256}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &870380684
@@ -359,7 +359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ControlPath: <AndroidGamepad>/buttonSouth
+  m_ControlPath: <Gamepad>/buttonSouth
 --- !u!1 &906604413 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8061541007524488544, guid: 756b83f3956943d43a9eefd112589d24, type: 3}
@@ -400,7 +400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71cf5a5ef850eb647b3cb7c2e4dfff96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentPlatformType: 0
+  CurrentPlatformType: 1
   CurrentGameMode: 0
   CurrentGameDifficulty: 0
 --- !u!114 &937439789
@@ -557,10 +557,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballTransform: {fileID: 0}
-  cameraLerpSpeed: 0.5
+  cameraLerpSpeed: 0.19
   maxCameraHeight: 20
   originalCameraHeight: 11
-  cameraHeightOffset: 80
+  cameraHeightOffset: 60.5
 --- !u!1 &947898309
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,8 +570,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 947898310}
-  - component: {fileID: 947898312}
-  - component: {fileID: 947898311}
   m_Layer: 5
   m_Name: MobileJoystick
   m_TagString: Untagged
@@ -601,44 +599,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &947898311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 947898309}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &947898312
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 947898309}
-  m_CullTransparentMesh: 1
 --- !u!114 &959936727 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 781420519947897202, guid: 891f1d1733651ed4380909d6784801dc, type: 3}
@@ -859,9 +819,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1215031729}
+  - component: {fileID: 1215031732}
   - component: {fileID: 1215031731}
   - component: {fileID: 1215031730}
-  - component: {fileID: 1215031732}
   m_Layer: 5
   m_Name: JoystickStick
   m_TagString: Untagged
@@ -941,7 +901,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MovementRange: 50
   m_DynamicOriginRange: 100
-  m_ControlPath: <AndroidGamepad>/leftStick
+  m_ControlPath: <Gamepad>/leftStick
   m_Behaviour: 0
   m_UseIsolatedInputActions: 0
   m_PointerDownAction:
@@ -1031,7 +991,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 150, y: 150}
+  m_AnchoredPosition: {x: 150, y: 0}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1589771151
@@ -1192,7 +1152,6 @@ MonoBehaviour:
   OVRObj: {fileID: 0}
   cameraObj: {fileID: 962711746}
   mobileJoystick: {fileID: 947898309}
-  jumpButtonMobile: {fileID: 870380684}
   eventSystem: {fileID: 1327786360}
 --- !u!1 &1707984636 stripped
 GameObject:
@@ -1721,6 +1680,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4010224430041771561, guid: 756b83f3956943d43a9eefd112589d24, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4010224430041771561, guid: 756b83f3956943d43a9eefd112589d24, type: 3}
+      propertyPath: m_IgnoreReversedGraphics
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4057242210193234598, guid: 756b83f3956943d43a9eefd112589d24, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
@@ -1942,6 +1909,54 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 884291967447005074, guid: b15d9ad0ba8b87e4686cf590e7364ae1, type: 3}
+      propertyPath: m_MoveAction
+      value: 
+      objectReference: {fileID: 3710738434707379630, guid: 57507f99136391c4aad7dc1101545c0d, type: 3}
+    - target: {fileID: 884291967447005074, guid: b15d9ad0ba8b87e4686cf590e7364ae1, type: 3}
+      propertyPath: m_PointAction
+      value: 
+      objectReference: {fileID: 1054132383583890850, guid: 57507f99136391c4aad7dc1101545c0d, type: 3}
+    - target: {fileID: 884291967447005074, guid: b15d9ad0ba8b87e4686cf590e7364ae1, type: 3}
+      propertyPath: m_ActionsAsset
+      value: 
+      objectReference: {fileID: -944628639613478452, guid: 57507f99136391c4aad7dc1101545c0d, type: 3}
+    - target: {fileID: 884291967447005074, guid: b15d9ad0ba8b87e4686cf590e7364ae1, type: 3}
+      propertyPath: m_CancelAction
+      value: 
+      objectReference: {fileID: -1967631576421560919, guid: 57507f99136391c4aad7dc1101545c0d, type: 3}
+    - target: {fileID: 884291967447005074, guid: b15d9ad0ba8b87e4686cf590e7364ae1, type: 3}
+      propertyPath: m_SubmitAction
+      value: 
+      objectReference: {fileID: 2064916234097673511, guid: 57507f99136391c4aad7dc1101545c0d, type: 3}
+    - target: {fileID: 884291967447005074, guid: b15d9ad0ba8b87e4686cf590e7364ae1, type: 3}
+      propertyPath: m_LeftClickAction
+      value: 
+      objectReference: {fileID: 8056856818456041789, guid: 57507f99136391c4aad7dc1101545c0d, type: 3}
+    - target: {fileID: 884291967447005074, guid: b15d9ad0ba8b87e4686cf590e7364ae1, type: 3}
+      propertyPath: m_PointerBehavior
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 884291967447005074, guid: b15d9ad0ba8b87e4686cf590e7364ae1, type: 3}
+      propertyPath: m_RightClickAction
+      value: 
+      objectReference: {fileID: 3837173908680883260, guid: 57507f99136391c4aad7dc1101545c0d, type: 3}
+    - target: {fileID: 884291967447005074, guid: b15d9ad0ba8b87e4686cf590e7364ae1, type: 3}
+      propertyPath: m_MiddleClickAction
+      value: 
+      objectReference: {fileID: 3279352641294131588, guid: 57507f99136391c4aad7dc1101545c0d, type: 3}
+    - target: {fileID: 884291967447005074, guid: b15d9ad0ba8b87e4686cf590e7364ae1, type: 3}
+      propertyPath: m_ScrollWheelAction
+      value: 
+      objectReference: {fileID: 4502412055082496612, guid: 57507f99136391c4aad7dc1101545c0d, type: 3}
+    - target: {fileID: 884291967447005074, guid: b15d9ad0ba8b87e4686cf590e7364ae1, type: 3}
+      propertyPath: m_TrackedDevicePositionAction
+      value: 
+      objectReference: {fileID: 4754684134866288074, guid: 57507f99136391c4aad7dc1101545c0d, type: 3}
+    - target: {fileID: 884291967447005074, guid: b15d9ad0ba8b87e4686cf590e7364ae1, type: 3}
+      propertyPath: m_TrackedDeviceOrientationAction
+      value: 
+      objectReference: {fileID: 1025543830046995696, guid: 57507f99136391c4aad7dc1101545c0d, type: 3}
     - target: {fileID: 2162041221239683003, guid: b15d9ad0ba8b87e4686cf590e7364ae1, type: 3}
       propertyPath: m_Name
       value: EventSystem
@@ -2002,7 +2017,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8937114883607685537, guid: b15d9ad0ba8b87e4686cf590e7364ae1, type: 3}
+      propertyPath: m_sendNavigationEvents
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2513408275072592648, guid: b15d9ad0ba8b87e4686cf590e7364ae1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

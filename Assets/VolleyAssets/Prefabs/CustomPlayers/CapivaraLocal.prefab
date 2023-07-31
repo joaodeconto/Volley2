@@ -128,6 +128,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2810404665707363651, guid: 901a739ed265dff49acbca65e5f8bc48, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2810404665707363651, guid: 901a739ed265dff49acbca65e5f8bc48, type: 3}
       propertyPath: forcedYdown
       value: 0
       objectReference: {fileID: 0}
@@ -184,12 +188,72 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5943985099017850198, guid: 901a739ed265dff49acbca65e5f8bc48, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5943985099017850198, guid: 901a739ed265dff49acbca65e5f8bc48, type: 3}
       propertyPath: m_DefaultControlScheme
       value: Mobile
       objectReference: {fileID: 0}
     - target: {fileID: 5943985099017850198, guid: 901a739ed265dff49acbca65e5f8bc48, type: 3}
       propertyPath: m_NeverAutoSwitchControlSchemes
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5943985099017850198, guid: 901a739ed265dff49acbca65e5f8bc48, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_ActionId
+      value: 812f6930-550c-49d5-a77b-78efe53e9b92
+      objectReference: {fileID: 0}
+    - target: {fileID: 5943985099017850198, guid: 901a739ed265dff49acbca65e5f8bc48, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_ActionId
+      value: e931b7a4-ef3d-4723-92f9-7778f7cb6a85
+      objectReference: {fileID: 0}
+    - target: {fileID: 5943985099017850198, guid: 901a739ed265dff49acbca65e5f8bc48, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_ActionId
+      value: 9a301fa2-1b98-45a0-a0e2-b769ae165ef2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5943985099017850198, guid: 901a739ed265dff49acbca65e5f8bc48, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_ActionId
+      value: d2522ff5-9185-41e2-bb8c-5f337a809836
+      objectReference: {fileID: 0}
+    - target: {fileID: 5943985099017850198, guid: 901a739ed265dff49acbca65e5f8bc48, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_ActionId
+      value: 57cf4327-1000-43ea-9a21-1b907f657ea5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5943985099017850198, guid: 901a739ed265dff49acbca65e5f8bc48, type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_ActionId
+      value: f67a214b-15f6-4c28-b2fe-b0fe334fba31
+      objectReference: {fileID: 0}
+    - target: {fileID: 5943985099017850198, guid: 901a739ed265dff49acbca65e5f8bc48, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_ActionId
+      value: 29f921af-3577-4a59-a3be-92df4bc57283
+      objectReference: {fileID: 0}
+    - target: {fileID: 5943985099017850198, guid: 901a739ed265dff49acbca65e5f8bc48, type: 3}
+      propertyPath: m_ActionEvents.Array.data[9].m_ActionId
+      value: 39624cd9-5835-4ed1-8a05-4e97b6e98c91
+      objectReference: {fileID: 0}
+    - target: {fileID: 5943985099017850198, guid: 901a739ed265dff49acbca65e5f8bc48, type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_ActionId
+      value: 878d38e4-7658-41c4-b6d5-017f33931d56
+      objectReference: {fileID: 0}
+    - target: {fileID: 5943985099017850198, guid: 901a739ed265dff49acbca65e5f8bc48, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_ActionId
+      value: f823d7c7-1315-42d9-864b-132681856617
+      objectReference: {fileID: 0}
+    - target: {fileID: 5943985099017850198, guid: 901a739ed265dff49acbca65e5f8bc48, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_ActionName
+      value: UI/Point[/Mouse/position,/Simulated Touchscreen/touch0/position,/Simulated
+        Touchscreen/touch1/position,/Simulated Touchscreen/touch2/position,/Simulated
+        Touchscreen/touch3/position,/Simulated Touchscreen/touch4/position,/Simulated
+        Touchscreen/touch5/position,/Simulated Touchscreen/touch6/position,/Simulated
+        Touchscreen/touch7/position,/Simulated Touchscreen/touch8/position,/Simulated
+        Touchscreen/touch9/position]
+      objectReference: {fileID: 0}
+    - target: {fileID: 5943985099017850198, guid: 901a739ed265dff49acbca65e5f8bc48, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_ActionName
+      value: UI/Click[/Mouse/leftButton,/Simulated Touchscreen/touch0/press,/Simulated
+        Touchscreen/touch1/press,/Simulated Touchscreen/touch2/press,/Simulated Touchscreen/touch3/press,/Simulated
+        Touchscreen/touch4/press,/Simulated Touchscreen/touch5/press,/Simulated Touchscreen/touch6/press,/Simulated
+        Touchscreen/touch7/press,/Simulated Touchscreen/touch8/press,/Simulated Touchscreen/touch9/press]
       objectReference: {fileID: 0}
     - target: {fileID: 6143592225074137226, guid: 901a739ed265dff49acbca65e5f8bc48, type: 3}
       propertyPath: m_IsActive
