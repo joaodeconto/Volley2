@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8553381130579024218}
   - component: {fileID: 8937114883607685537}
   - component: {fileID: 884291967447005074}
-  - component: {fileID: 2513408275072592648}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -66,48 +65,16 @@ MonoBehaviour:
   m_MoveRepeatRate: 0.1
   m_XRTrackingOrigin: {fileID: 0}
   m_ActionsAsset: {fileID: -944628639613478452, guid: 57507f99136391c4aad7dc1101545c0d, type: 3}
-  m_PointAction: {fileID: -6884405112544252622, guid: 57507f99136391c4aad7dc1101545c0d, type: 3}
-  m_MoveAction: {fileID: 8232235320503222442, guid: 57507f99136391c4aad7dc1101545c0d, type: 3}
-  m_SubmitAction: {fileID: -463268917758414675, guid: 57507f99136391c4aad7dc1101545c0d, type: 3}
-  m_CancelAction: {fileID: -856336389072927542, guid: 57507f99136391c4aad7dc1101545c0d, type: 3}
-  m_LeftClickAction: {fileID: 8688121293454498627, guid: 57507f99136391c4aad7dc1101545c0d, type: 3}
-  m_MiddleClickAction: {fileID: -4855191919913343870, guid: 57507f99136391c4aad7dc1101545c0d, type: 3}
-  m_RightClickAction: {fileID: 2423826153824456581, guid: 57507f99136391c4aad7dc1101545c0d, type: 3}
-  m_ScrollWheelAction: {fileID: -2362127321713215214, guid: 57507f99136391c4aad7dc1101545c0d, type: 3}
-  m_TrackedDevicePositionAction: {fileID: -7002231021527524511, guid: 57507f99136391c4aad7dc1101545c0d, type: 3}
-  m_TrackedDeviceOrientationAction: {fileID: 5001767270737804547, guid: 57507f99136391c4aad7dc1101545c0d, type: 3}
+  m_PointAction: {fileID: 1054132383583890850, guid: 57507f99136391c4aad7dc1101545c0d, type: 3}
+  m_MoveAction: {fileID: 3710738434707379630, guid: 57507f99136391c4aad7dc1101545c0d, type: 3}
+  m_SubmitAction: {fileID: 2064916234097673511, guid: 57507f99136391c4aad7dc1101545c0d, type: 3}
+  m_CancelAction: {fileID: -1967631576421560919, guid: 57507f99136391c4aad7dc1101545c0d, type: 3}
+  m_LeftClickAction: {fileID: 8056856818456041789, guid: 57507f99136391c4aad7dc1101545c0d, type: 3}
+  m_MiddleClickAction: {fileID: 3279352641294131588, guid: 57507f99136391c4aad7dc1101545c0d, type: 3}
+  m_RightClickAction: {fileID: 3837173908680883260, guid: 57507f99136391c4aad7dc1101545c0d, type: 3}
+  m_ScrollWheelAction: {fileID: 4502412055082496612, guid: 57507f99136391c4aad7dc1101545c0d, type: 3}
+  m_TrackedDevicePositionAction: {fileID: 4754684134866288074, guid: 57507f99136391c4aad7dc1101545c0d, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 1025543830046995696, guid: 57507f99136391c4aad7dc1101545c0d, type: 3}
   m_DeselectOnBackgroundClick: 1
-  m_PointerBehavior: 2
+  m_PointerBehavior: 0
   m_CursorLockBehavior: 0
---- !u!114 &2513408275072592648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2162041221239683003}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f1a9a1d119a5944aacfb87d1ec283a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
-  rayTransform: {fileID: 0}
-  m_Cursor: {fileID: 0}
-  joyPadClickButton: 1
-  gazeClickKey: 32
-  performSphereCastForGazepointer: 1
-  useRightStickScroll: 1
-  rightStickDeadZone: 0.15
-  useSwipeScroll: 1
-  swipeDragThreshold: 1
-  swipeDragScale: 1
-  InvertSwipeXAxis: 1
-  angleDragThreshold: 1
-  m_SpherecastRadius: 1
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_AllowActivationOnMobileDevice: 1

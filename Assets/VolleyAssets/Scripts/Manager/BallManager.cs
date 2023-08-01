@@ -21,6 +21,9 @@ public class BallManager : MonoBehaviour
 
     public async void RestartBall()
     {
+        if (GameStateManager.Instance.PreviousState == GameStates.PAUSED)
+            return;
+
         await GetBall();
         if (GameModeManager.Instance.CurrentGameMode == GameModes.MultiPlayerDesktop)
         {
@@ -30,7 +33,7 @@ public class BallManager : MonoBehaviour
         }
         ballObj.GetComponent<Rigidbody>().velocity = Vector3.zero;
         lastPoint = GameManager.Instance.LastPoint;
-        ballServicePosition = new Vector3( 10 * (lastPoint == 0 ? 1: -1), 1, 0);
+        ballServicePosition = new Vector3( 10 * (lastPoint == 0 ? 1: -1), 3, 0);
         Debug.Log("BallManager.RestartBall() ballServicePosition: " + ballServicePosition);
         ballObj.transform.position = ballServicePosition;        
         ballObj.GetComponent<BallController>().ServeBall(lastPoint);
@@ -51,7 +54,7 @@ public class BallManager : MonoBehaviour
             }
             else
             {
-                ballObj = SpawnManager.Instance.SpawnNetworkBall();
+                ballObj = await SpawnManager.Instance.SpawnNetworkBall();
                 return ballObj;
             }
         }
@@ -59,7 +62,7 @@ public class BallManager : MonoBehaviour
         {
             if (ballObj == null)
             {
-                ballObj = SpawnManager.Instance.SpawnLocalBall();
+                ballObj = await SpawnManager.Instance.SpawnLocalBall();
             }
             return ballObj;
         }

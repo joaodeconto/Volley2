@@ -76,9 +76,9 @@ public class SpawnManager : MonoBehaviour
         //Debug.Log("Initializing players OnlyAi");
     }
 
-    public GameObject SpawnNetworkBall()
+    public async Task<GameObject> SpawnNetworkBall()
     {
-        if (TryGetComponent<BallNetwork>(out BallNetwork ball))
+        if(TryGetComponent<BallNetwork>(out BallNetwork ball))
         {
             return ball.gameObject;
         }
@@ -93,13 +93,13 @@ public class SpawnManager : MonoBehaviour
             //Debug.Log($"Initializing ball");
         }
 
-        return ballSpawned;
+        return await Task.FromResult(ballSpawned);
     }
 
-    public GameObject SpawnLocalBall()
+    public async Task<GameObject> SpawnLocalBall()
     {
         ballSpawned = Instantiate(ballLocalPrefab, Vector3.zero, Quaternion.identity);
         ballSpawned.name = "LocalBall";
-        return ballSpawned;
+        return await Task.FromResult(ballSpawned);
     }
 }

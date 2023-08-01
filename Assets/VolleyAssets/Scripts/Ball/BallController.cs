@@ -75,7 +75,7 @@ public class BallController : MonoBehaviour
     public void ServeBall(int team)
     {
         int side = team == 0 ? -1 : 1;
-        ballRigidbody.AddForce((Vector3.up + Vector3.right *side) * 8 , ForceMode.Impulse);
+        ballRigidbody.AddForce((Vector3.up + Vector3.right *side) * 7 , ForceMode.Impulse);
         LastToTouch = team;
     }
 }

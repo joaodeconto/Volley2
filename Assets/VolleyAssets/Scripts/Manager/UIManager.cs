@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject OVRObj;
     [SerializeField] private GameObject cameraObj;
     [SerializeField] private GameObject mobileJoystick;
+    [SerializeField] private Button pauseButton;
     [SerializeField] private EventSystem eventSystem;
 
     public static UnityAction OnJumpPressed;
@@ -20,6 +21,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         //GameModeManager.Instance.SetPlatformType(platformType);
+        pauseButton.onClick.AddListener(SetPause);
         ConfigureCanvasForPlatform(GameModeManager.Instance.CurrentPlatformType);
         DeactivateJoystick();
     }
@@ -64,6 +66,14 @@ public class UIManager : MonoBehaviour
     {
         //Debug.Log("Deactivating Joystick");
         mobileJoystick.SetActive(false);
+    }
+
+    private void SetPause()
+    {
+        if(GameStateManager.Instance.CurrentState != GameStates.PAUSED)
+            GameStateManager.Instance.ChangeState(GameStates.PAUSED);
+        else
+            GameStateManager.Instance.ChangeState(GameStateManager.Instance.PreviousState);
     }
     private void OnDestroy()
     {

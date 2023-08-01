@@ -208,6 +208,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5943985099017850198, guid: 901a739ed265dff49acbca65e5f8bc48, type: 3}
+      propertyPath: m_NotificationBehavior
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5943985099017850198, guid: 901a739ed265dff49acbca65e5f8bc48, type: 3}
       propertyPath: m_NeverAutoSwitchControlSchemes
       value: 0
       objectReference: {fileID: 0}

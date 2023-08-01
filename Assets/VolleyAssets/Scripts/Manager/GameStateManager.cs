@@ -53,6 +53,7 @@ public class GameStateManager : MonoBehaviour
                 //Debug.Log("Entered Gameplay State");
                 break;
             case GameStates.PAUSED:
+                _currentState = FindObjectOfType<PauseManager>();
                 break;
             case GameStates.GAMEOVER:
                 _currentState = FindObjectOfType<GameOver>();
