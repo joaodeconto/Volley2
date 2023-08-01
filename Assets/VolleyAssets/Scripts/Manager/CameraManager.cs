@@ -6,7 +6,6 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private Transform ballTransform;
     [SerializeField] private float cameraLerpSpeed = 5f;
     [SerializeField] private float maxCameraHeight = 10f;
-    [SerializeField] private float originalCameraHeight = 5f;
     [SerializeField] private float cameraHeightOffset = 2f;
 
     private Camera mainCamera;

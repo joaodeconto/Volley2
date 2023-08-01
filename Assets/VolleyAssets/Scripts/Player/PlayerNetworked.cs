@@ -21,16 +21,19 @@ public class PlayerNetworked : NetworkBehaviour
             gameObject.name = "-> RemotePlayer " + Object.Id;
             Destroy(GetComponent<PlayerInput>());
             Destroy(GetComponent<PlayerMovement>());
+            Destroy(GetComponent<PlayerInteraction>());
         }        
         else
         {
             gameObject.name = "--> LocalPlayer";
-    /*       if (playerStats.playerType == PlayerType.OVR)
+        /*       
+            if (playerStats.playerType == PlayerType.OVR)
             {
                 Destroy(GetComponent<PlayerInput>());
                 Destroy(GetComponent<PlayerMovement>());
             }
-    */    }
+        */    
+        }
 
         
 

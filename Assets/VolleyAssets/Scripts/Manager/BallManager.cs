@@ -1,10 +1,12 @@
 using Fusion;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class BallManager : MonoBehaviour
 {
     public GameObject ballObj;
-
+    private int lastPoint = 0;
+    private Vector3 ballServicePosition;
     private void OnEnable()
     {
         // Register event listeners when the script is enabled
@@ -17,9 +19,9 @@ public class BallManager : MonoBehaviour
         GameManager.OnStateEnter -= RestartBall;
     }
 
-    public void RestartBall()
+    public async void RestartBall()
     {
-        GetBall();
+        await GetBall();
         if (GameModeManager.Instance.CurrentGameMode == GameModes.MultiPlayerDesktop)
         {
             NetworkObject b = ballObj.GetComponent<NetworkObject>();
@@ -27,11 +29,14 @@ public class BallManager : MonoBehaviour
                 return;
         }
         ballObj.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        Vector3 ballRandomPosition = new Vector3(Random.Range(-10f, 10f), 7, Random.Range(-5f, 5f));
-        ballObj.transform.position = ballRandomPosition;
+        lastPoint = GameManager.Instance.LastPoint;
+        ballServicePosition = new Vector3( 10 * (lastPoint == 0 ? 1: -1), 1, 0);
+        Debug.Log("BallManager.RestartBall() ballServicePosition: " + ballServicePosition);
+        ballObj.transform.position = ballServicePosition;        
+        ballObj.GetComponent<BallController>().ServeBall(lastPoint);
     }
 
-    public GameObject GetBall()
+    public async Task<GameObject> GetBall()
     {
         if (ballObj != null)
             return ballObj;

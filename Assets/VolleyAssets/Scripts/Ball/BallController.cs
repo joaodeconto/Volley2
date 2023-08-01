@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -15,6 +16,7 @@ public class BallController : MonoBehaviour
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+        ballRigidbody = GetComponent<Rigidbody>();
         PlayerInteraction.OnBallStrike += HitBall;
     }
 
@@ -25,7 +27,6 @@ public class BallController : MonoBehaviour
 
     private void Start()
     {
-        ballRigidbody = GetComponent<Rigidbody>();
         if (TryGetComponent(out BallNetwork networkedBall))
         {
             // If you have a BallNetwork component for networking, set isNetworked to true
@@ -42,7 +43,7 @@ public class BallController : MonoBehaviour
 
         if (!collision.gameObject.CompareTag("Player"))
         {
-            AudioManager.Instance.PlaySound(AudioManager.AudioType.SoundEffect, 0, audioSource);
+            AudioManager.Instance.PlaySound(AudioManager.AudioType.SoundEffect, Random.Range(0,2), audioSource);
         }
 
         if (GameStateManager.Instance.CurrentState != GameStates.GAMEPLAY)
@@ -69,6 +70,12 @@ public class BallController : MonoBehaviour
 
         // Set the last player to touch the ball
         LastToTouch = strikeData.teamId;
-        AudioManager.Instance.PlaySound(AudioManager.AudioType.SoundEffect, Random.Range(1,3), audioSource);
+        AudioManager.Instance.PlaySound(AudioManager.AudioType.SoundEffect, 2, audioSource);
+    }
+    public void ServeBall(int team)
+    {
+        int side = team == 0 ? -1 : 1;
+        ballRigidbody.AddForce((Vector3.up + Vector3.right *side) * 8 , ForceMode.Impulse);
+        LastToTouch = team;
     }
 }

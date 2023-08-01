@@ -1,4 +1,5 @@
 using Fusion;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -61,7 +62,7 @@ public class SpawnManager : MonoBehaviour
         
         GameObject playerB = Instantiate(AiPrefabLocal, new Vector3(5, .5f, 0), Quaternion.identity);
         playerB.GetComponent<PlayerStats>().PlayerTeam = 1;
-        Debug.Log("Initializing players A and B");
+        //Debug.Log("Initializing players A and B");
     }
 
     public void SpawnOnlyAi()
@@ -72,12 +73,12 @@ public class SpawnManager : MonoBehaviour
         PlayerStats playerB = Instantiate(AiPrefabLocal, new Vector3(5, .5f, 0), Quaternion.identity).GetComponent<PlayerStats>();
         playerA.playerType = PlayerStats.PlayerType.AI;
         playerB.PlayerTeam = 1;
-        Debug.Log("Initializing players OnlyAi");
+        //Debug.Log("Initializing players OnlyAi");
     }
 
     public GameObject SpawnNetworkBall()
     {
-        if(TryGetComponent<BallNetwork>(out BallNetwork ball))
+        if (TryGetComponent<BallNetwork>(out BallNetwork ball))
         {
             return ball.gameObject;
         }
@@ -89,7 +90,7 @@ public class SpawnManager : MonoBehaviour
             ballSpawned = networkObject.gameObject;
             BallController ball = networkObject.gameObject.GetComponent<BallController>();
             ballSpawned.name = "FirstBall";
-            Debug.Log($"Initializing ball");
+            //Debug.Log($"Initializing ball");
         }
 
         return ballSpawned;

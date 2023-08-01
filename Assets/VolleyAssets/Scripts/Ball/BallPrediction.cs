@@ -13,7 +13,6 @@ public class BallPrediction : MonoBehaviour
     private float timeToGround;
     private float maxHeight;
     private Vector3 predictedPosition;
-    private bool sendAiPrediction = false;
 
     private void Start()
     {

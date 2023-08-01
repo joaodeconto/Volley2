@@ -9,9 +9,12 @@ public class GameManager : MonoBehaviour, IScore, IGameState
     [SerializeField] private GameObject scenarioObj;
 
     public int MyTeam;
+    public int LastPoint { get { return lastPoint; } }
     private int scoreTeamA = 0;
     private int scoreTeamB = 0;
-    private int lastPoint;
+    private int lastPoint = 0;
+
+
 
     public static UnityAction OnClearScore;
     public static UnityAction OnStateEnter;

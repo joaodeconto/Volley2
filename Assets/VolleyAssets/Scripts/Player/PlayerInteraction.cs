@@ -24,6 +24,7 @@ public class PlayerInteraction : MonoBehaviour
     private PlayerStats playerStats;
     private PlayerMovement playerMovement;
     private bool recentTouch = false;
+    private AudioSource playerAudioSource;
 
     private Vector3 SideDirection
     {
@@ -41,6 +42,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         playerStats = GetComponent<PlayerStats>();
         playerMovement = GetComponent<PlayerMovement>();
+        playerAudioSource = GetComponent<AudioSource>();
     }
 
     private void OnCollisionEnter(Collision collision)

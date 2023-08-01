@@ -57,12 +57,12 @@ public class UIManager : MonoBehaviour
 
     private void ActivateJoystick()
     {
-        Debug.Log("Activating Joystick");
+        //Debug.Log("Activating Joystick");
         mobileJoystick.SetActive(true);
     }
     private void DeactivateJoystick()
     {
-        Debug.Log("Deactivating Joystick");
+        //Debug.Log("Deactivating Joystick");
         mobileJoystick.SetActive(false);
     }
     private void OnDestroy()

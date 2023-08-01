@@ -250,7 +250,7 @@
                     "path": "<Gamepad>/leftStick/up",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Gamepad",
+                    "groups": "Gamepad;Mobile",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -261,7 +261,7 @@
                     "path": "<Gamepad>/rightStick/up",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Gamepad",
+                    "groups": "Gamepad;Mobile",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -272,7 +272,7 @@
                     "path": "<Gamepad>/leftStick/down",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Gamepad",
+                    "groups": "Gamepad;Mobile",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -283,7 +283,7 @@
                     "path": "<Gamepad>/rightStick/down",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Gamepad",
+                    "groups": "Gamepad;Mobile",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -294,7 +294,7 @@
                     "path": "<Gamepad>/leftStick/left",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Gamepad",
+                    "groups": "Gamepad;Mobile",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -305,7 +305,7 @@
                     "path": "<Gamepad>/rightStick/left",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Gamepad",
+                    "groups": "Gamepad;Mobile",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -316,7 +316,7 @@
                     "path": "<Gamepad>/leftStick/right",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Gamepad",
+                    "groups": "Gamepad;Mobile",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -327,7 +327,7 @@
                     "path": "<Gamepad>/rightStick/right",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Gamepad",
+                    "groups": "Gamepad;Mobile",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -342,61 +342,6 @@
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "Joystick",
-                    "id": "83c088e1-25b2-4f2f-a60f-cd6ab0ff91be",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Navigate",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "81664d03-cc0d-4045-a719-51446a7f4059",
-                    "path": "<Joystick>/stick/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Joystick;Mobile",
-                    "action": "Navigate",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "73b38e3b-cd7e-4204-bd86-3b42c9b5111a",
-                    "path": "<Joystick>/stick/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Joystick;Mobile",
-                    "action": "Navigate",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "081edf98-4fe7-4cc8-bb06-5cf0d16a04ee",
-                    "path": "<Joystick>/stick/left",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Joystick;Mobile",
-                    "action": "Navigate",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "b1b2d643-5cbc-4754-a243-b5edab6d8e0f",
-                    "path": "<Joystick>/stick/right",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Joystick;Mobile",
-                    "action": "Navigate",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 },
                 {
                     "name": "Keyboard",
@@ -525,7 +470,7 @@
                     "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse;Desktop;OVR",
+                    "groups": "Keyboard&Mouse;Desktop",
                     "action": "Point",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -536,7 +481,7 @@
                     "path": "<Pen>/position",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse",
+                    "groups": "Keyboard&Mouse;Desktop",
                     "action": "Point",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -569,7 +514,7 @@
                     "path": "<Pen>/tip",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse",
+                    "groups": "Keyboard&Mouse;Desktop",
                     "action": "Click",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -602,7 +547,7 @@
                     "path": "<Mouse>/scroll",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse",
+                    "groups": "Keyboard&Mouse;Desktop",
                     "action": "ScrollWheel",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -613,7 +558,7 @@
                     "path": "<Mouse>/middleButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse",
+                    "groups": "Keyboard&Mouse;Desktop",
                     "action": "MiddleClick",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -624,7 +569,7 @@
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse",
+                    "groups": "Keyboard&Mouse;Desktop",
                     "action": "RightClick",
                     "isComposite": false,
                     "isPartOfComposite": false
