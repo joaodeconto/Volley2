@@ -49,6 +49,11 @@ public class GameManager : MonoBehaviour, IScore, IGameState
         ClearScore();
     }
 
+    public void RestartMatch()
+    {
+        ClearScore();
+    }
+
     private void EndGame()
     {
         Result(scoreTeamA == targetScore ? 0 : 1);

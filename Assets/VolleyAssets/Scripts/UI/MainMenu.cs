@@ -23,8 +23,7 @@ public class MainMenu : MonoBehaviour, IGameState
     }
 
     public void EnterState()
-    {
-        
+    {        
         mainMenuPanel.SetActive(true);
         Init();
     }

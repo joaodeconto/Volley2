@@ -10,6 +10,7 @@ public interface IGameState
 public enum GameStates
 {
     NONE,
+    SPLASHSCREEN,
     MAINMENU,
     LOBBY,
     BREAK,

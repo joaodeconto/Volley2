@@ -16,7 +16,7 @@ public class GameStateManager : MonoBehaviour
     private void Start()
     {
         // Set the initial game state
-        ChangeState(GameStates.MAINMENU);
+        ChangeState(GameStates.SPLASHSCREEN);
     }
 
     public void ChangeState(GameStates newState)
@@ -36,6 +36,10 @@ public class GameStateManager : MonoBehaviour
 
         switch (newState)
         {
+            case GameStates.SPLASHSCREEN:
+                _currentState = FindObjectOfType<SplashScreen>();
+                //Debug.Log("Entered Splash Screen State");
+                break;
             case GameStates.MAINMENU:
                 _currentState = FindObjectOfType<MainMenu>();
                 //Debug.Log("Entered Main Menu State");

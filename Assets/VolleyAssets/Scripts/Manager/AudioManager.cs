@@ -60,10 +60,6 @@ public class AudioManager : MonoBehaviour
         GameOver.OnStateEnter -= PlayGameOverMusic;
     }
 
-    private void Start()
-    {
-        PlaySound(AudioType.Music, 0, musicSource);
-    }
     private void PlayInGameMusic()
     {
         if(!isMusicPlaying)
@@ -71,6 +67,10 @@ public class AudioManager : MonoBehaviour
             PlaySound(AudioType.Music, 1, musicSource);
             isMusicPlaying = true;
         }
+    }
+    public void PlayIntroMusic()
+    {
+        PlaySound(AudioType.Music, 0, musicSource);
     }
     private void PlayGameOverMusic()
     {

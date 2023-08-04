@@ -1,10 +1,22 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PauseManager : MonoBehaviour, IGameState
 {
     private bool isGamePaused = false;
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private Button resumeButton;
+    [SerializeField] private Button restartButton;
+    [SerializeField] private Button quitButton;
 
+
+    private void Start()
+    {
+        // Add listeners to the buttons
+        resumeButton.onClick.AddListener(ResumeGame);
+        restartButton.onClick.AddListener(RestartGame);
+        quitButton.onClick.AddListener(QuitGame);
+    }
     public void EnterState()
     {
         // Show the pause menu and pause the game
@@ -23,18 +35,6 @@ public class PauseManager : MonoBehaviour, IGameState
 
     public void UpdateState()
     {
-        // Check for pause input
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (isGamePaused)
-            {
-                GameStateManager.Instance.ChangeState(GameStates.GAMEPLAY);
-            }
-            else
-            {
-                GameStateManager.Instance.ChangeState(GameStates.PAUSED);
-            }
-        }
     }
 
     public void ResumeGame()

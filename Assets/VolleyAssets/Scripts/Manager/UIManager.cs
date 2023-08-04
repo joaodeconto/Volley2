@@ -39,21 +39,6 @@ public class UIManager : MonoBehaviour
                 GameManager.OnStateEnter += ActivateJoystick;
                 GameOver.OnStateEnter += DeactivateJoystick;
                 break;
-            case PlatformType.VR:
-                // Set Canvas render mode to World Space
-                OVRObj.SetActive(true);
-                canvas.renderMode = RenderMode.WorldSpace;
-                eventSystem.GetComponent<InputSystemUIInputModule>().enabled = false;
-                // Adjust scale for VR
-                canvas.transform.localScale = Vector3.one * 0.001f;
-                canvas.transform.position = new Vector3(-1f, .7f, -.5f);
-                canvas.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
-                // Add OVR Raycaster component if not present
-                if (!canvas.GetComponent<OVRPhysicsRaycaster>())
-                {
-                    canvas.gameObject.AddComponent<OVRRaycaster>();
-                }
-                break;
         }
     }
 

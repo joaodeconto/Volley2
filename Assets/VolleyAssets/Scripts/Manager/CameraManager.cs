@@ -4,9 +4,9 @@ using UnityEngine;
 public class CameraManager : MonoBehaviour
 {
     [SerializeField] private Transform ballTransform;
-    [SerializeField] private float cameraLerpSpeed = 5f;
-    [SerializeField] private float maxCameraHeight = 10f;
-    [SerializeField] private float cameraHeightOffset = 2f;
+    [SerializeField] private float cameraLerpSpeed = .6f;
+    [SerializeField] private float maxCameraHeight = 24f;
+    [SerializeField] private float cameraHeightOffset = 60f;
 
     private Camera mainCamera;
     private Vector3 originalCameraPosition;
@@ -20,7 +20,7 @@ public class CameraManager : MonoBehaviour
         originalCameraPosition = mainCamera.transform.position;       
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if(GameStateManager.Instance.CurrentState != GameStates.GAMEPLAY)
             return;
