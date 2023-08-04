@@ -6,9 +6,9 @@ public class BreakManager : MonoBehaviour, IGameState
 {
     IEnumerator BreakWait()
     {
+        IronSource.Agent.showInterstitial();
         yield return new WaitForSeconds(3);
         GameStateManager.Instance.ChangeState(GameStates.GAMEPLAY);
-        IronSource.Agent.showInterstitial();
     }
 
     public void EnterState()

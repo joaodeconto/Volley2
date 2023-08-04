@@ -4,9 +4,22 @@ using UnityEngine;
 
 public class BallManager : MonoBehaviour
 {
-    public GameObject ballObj;
+    public GameObject BallObject { get; private set; }
     private int lastPoint = 0;
     private Vector3 ballServicePosition;
+    public static BallManager Instance { get; private set; }
+
+    private void Start()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
     private void OnEnable()
     {
         // Register event listeners when the script is enabled
@@ -27,44 +40,44 @@ public class BallManager : MonoBehaviour
         await GetBall();
         if (GameModeManager.Instance.CurrentGameMode == GameModes.MultiPlayerDesktop)
         {
-            NetworkObject b = ballObj.GetComponent<NetworkObject>();
+            NetworkObject b = BallObject.GetComponent<NetworkObject>();
             if (!b.HasStateAuthority)
                 return;
         }
-        ballObj.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        BallObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
         lastPoint = GameManager.Instance.LastPoint;
-        ballServicePosition = new Vector3( 10 * (lastPoint == 0 ? 1: -1), 3, 0);
-        Debug.Log("BallManager.RestartBall() ballServicePosition: " + ballServicePosition);
-        ballObj.transform.position = ballServicePosition;        
-        ballObj.GetComponent<BallController>().ServeBall(lastPoint);
+        ballServicePosition = new Vector3(10 * (lastPoint == 0 ? 1 : -1), 3, 0);
+        //Debug.Log("BallManager.RestartBall() ballServicePosition: " + ballServicePosition);
+        BallObject.transform.position = ballServicePosition;
+        BallObject.GetComponent<BallController>().ServeBall(lastPoint);
     }
 
     public async Task<GameObject> GetBall()
     {
-        if (ballObj != null)
-            return ballObj;
+        if (BallObject != null)
+            return BallObject;
 
         if (GameModeManager.Instance.CurrentGameMode == GameModes.MultiPlayerDesktop)
         {
             BallNetwork networkBall = FindObjectOfType<BallNetwork>();
             if (networkBall != null)
             {
-                ballObj = networkBall.gameObject;
-                return ballObj;
+                BallObject = networkBall.gameObject;
+                return BallObject;
             }
             else
             {
-                ballObj = await SpawnManager.Instance.SpawnNetworkBall();
-                return ballObj;
+                BallObject = await SpawnManager.Instance.SpawnNetworkBall();
+                return BallObject;
             }
         }
         else
         {
-            if (ballObj == null)
+            if (BallObject == null)
             {
-                ballObj = await SpawnManager.Instance.SpawnLocalBall();
+                BallObject = await SpawnManager.Instance.SpawnLocalBall();
             }
-            return ballObj;
+            return BallObject;
         }
     }
 }
